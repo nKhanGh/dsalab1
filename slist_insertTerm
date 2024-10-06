@@ -1,0 +1,39 @@
+void Polynomial::insertTerm(const Term& term) {
+    if(term.coeff == 0) return;
+    if(terms->empty() || terms->get(terms->size() - 1).exp > term.exp) terms->add(term);
+    else{
+        for(int i = 0; i < terms->size(); i++){
+            int a = terms->get(i).exp;
+            int b = term.exp;
+            if(a == b){
+                if(terms->get(i).coeff + term.coeff == 0) terms->removeAt(i);
+                else terms->set(i, Term(term.coeff + terms->get(i).coeff, a));
+                return;
+            }
+            if(b > a){
+                terms->add(i, term);
+                return;
+            }
+        }
+    }
+}
+
+void Polynomial::insertTerm(double coeff, int exp) {
+    if(coeff == 0) return;
+    Term term(coeff, exp);
+    if(terms->empty() || terms->get(terms->size() - 1).exp > exp) terms->add(term);
+    else{
+        for(int i = 0; i < terms->size(); i++){
+            int a = terms->get(i).exp;
+            if(a == exp){
+                if(terms->get(i).coeff + coeff == 0) terms->removeAt(i);
+                else terms->set(i, Term(coeff + terms->get(i).coeff, a));
+                return;
+            }
+            if(exp > a){
+                terms->add(i, term);
+                return;
+            }
+        }
+    }
+}
