@@ -1,0 +1,12 @@
+LLNode* reverseLinkedList(LLNode* head) {
+    LLNode* b = NULL;
+    LLNode* a = head;
+    //LLNode* head1 = NULL;
+    while(a != NULL){
+        LLNode* k = a->next;
+        a->next = b;
+        b = a;
+        a = k;
+    }
+    return b;
+}
