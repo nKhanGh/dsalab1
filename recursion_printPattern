@@ -1,0 +1,22 @@
+void print2(int n, int i){
+    if(i == n) {
+        cout << i;
+        return;
+    } 
+    else{
+        cout << i << " ";
+        print2(n, i + 5);
+    }
+}
+
+void print1(int n, int i){
+    cout << i << " ";
+    if(i > 0) print1(n, i - 5);
+    else print2(n, i + 5);
+}
+
+
+void printPattern(int n) 
+{ 
+    print1(n, n);
+}
