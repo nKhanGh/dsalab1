@@ -1,0 +1,10 @@
+int find(int a, int b, int c){
+    if(b % a == 0) return b;
+    return find(a, b + c, c);
+}
+
+int findLCM(int a, int b)
+{
+    if(b < a) return find(b, a, a);
+    return find(a, b, b);
+}
