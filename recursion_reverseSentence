@@ -1,0 +1,5 @@
+string reverseSentence(string s) {
+    if(s.size() == 0) return "";
+    if(s.rfind(" ") == string::npos) return s;
+    return s.substr(s.rfind(" ") + 1, s.size() - s.rfind(" ") - 1) + " " + reverseSentence(s.substr(0, s.rfind(" ")));
+}
