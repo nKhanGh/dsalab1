@@ -1,0 +1,10 @@
+int max(int* arr, int length, int m){
+    if(length == 0) return m;
+    if(*arr > m) m = *arr;
+    return max(arr + 1, length -1 , m);
+}
+
+int findMax(int* arr, int length)
+{
+    return max(arr, length, 0);
+}
