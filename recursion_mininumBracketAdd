@@ -1,0 +1,22 @@
+void mini(string s, int& i, int& num){
+    if(s.size() == 0){
+        return;
+    }
+    if(s[0] == '(') i++;
+    if(s[0] == ')'){
+        if(i > 0)i--;
+        else num++;
+    }
+    mini(s.substr(1, s.size() - 1), i, num);
+}
+
+int mininumBracketAdd(const string s) {
+    string s1 = s.substr(0, s.size()/2);
+    string s2 = s.substr(s.size()/2, s.size()/2 + 1);
+    int num = 0;
+    int i = 0;
+    mini(s1, i, num);
+    mini(s2, i, num);
+    num+= i;
+    return num;
+}
