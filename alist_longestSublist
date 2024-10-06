@@ -1,0 +1,14 @@
+int longestSublist(vector<string>& words) {
+   if(words.empty()) return 0;
+   int cur = 1;
+   int maxx = 1;
+   for(unsigned int i = 1; i < words.size(); i++){
+       if(words[i][0] == words[i - 1][0]) cur++;
+       else {
+           maxx = max(cur, maxx);
+           cur = 1;
+       }
+   }
+   maxx = max(cur, maxx);
+   return maxx;
+}
