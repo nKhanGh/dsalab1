@@ -1,0 +1,16 @@
+string nhan(string sub, int n){
+    if(n == 0) return "";    
+    return sub + nhan(sub, n - 1);
+}
+string expand(string s){
+    size_t a = s.rfind('(');
+    size_t b = s.find(')', a);
+    if(a == string::npos || s.empty()) return s;
+    string cur = s.substr(a + 1, b - a - 1);
+    string pre = s.substr(0, a - 1);
+    int num = s[a - 1] - 48;
+    string next = "";
+    if(b != s.size() - 1) next = s.substr(b + 1, s.size() - 1);
+    cur = nhan(cur, num);
+    return expand(pre + cur + next);
+}
