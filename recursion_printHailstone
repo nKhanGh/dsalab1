@@ -1,0 +1,11 @@
+void printHailstone(int number)
+{
+    cout << number;
+    if(number == 1) return;
+    else cout << " ";
+    if(number % 2 == 1) {
+        number = number*3 + 1;
+        printHailstone(number);
+    }
+    else printHailstone(number/2);
+}
