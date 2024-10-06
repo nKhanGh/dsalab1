@@ -1,0 +1,16 @@
+LLNode* rotateLinkedList(LLNode* head, int k) {
+    if(head == NULL || head->next == NULL) return head;
+    LLNode* tail = head;
+    int len = 1;
+    while(tail->next != NULL){
+        len++;
+        tail = tail->next;
+    }
+    k %= len;
+    if(k == 0) return head;
+    tail->next = head;
+    for(int i = 1; i < len - k + 1; i++) tail = tail->next;
+    head = tail->next;
+    tail->next = NULL;
+    return head;
+}
