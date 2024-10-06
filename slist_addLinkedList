@@ -1,0 +1,29 @@
+LLNode* addLinkedList(LLNode* l0, LLNode* l1) {
+    if(l0 == NULL && l1 == NULL) return NULL;
+    LLNode* a = l0;
+    LLNode* b = l1;
+    LLNode* cur = new LLNode;
+    LLNode* headm = cur;
+    int k = 0;
+    while(a != NULL || b != NULL || k){
+        int sum = k;
+        if(a != NULL){
+            sum += a->val;
+            a = a->next;
+        }
+        if(b != NULL) {
+            sum += b->val;
+            b = b->next;
+        }
+        k = sum/10;
+        sum %= 10;
+        cur->val = sum;
+        if(a != NULL || b != NULL || k){
+            LLNode* nex = new LLNode;
+            cur->next = nex;
+            cur = cur->next;
+        }
+    }
+    cur->next = NULL;
+    return headm;
+}
