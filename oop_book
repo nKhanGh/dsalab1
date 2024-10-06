@@ -1,0 +1,81 @@
+class Book
+{
+private:
+    char* title;
+    char* authors;
+    int publishingYear;
+
+public:
+    Book()
+    {
+        this->title = NULL;
+        this->authors = NULL;
+        this->publishingYear = 0;
+    }
+
+    Book(const char* title, const char* authors, int publishingYear)
+    {
+        int n = strlen(title);
+        int m = strlen(authors);
+        this->title = new char[n];
+        this->authors = new char[m];
+        for(int i = 0; i < n; i++) this->title[i] = title[i];
+        for(int j = 0; j < m; j++) this->authors[j] = authors[j];
+        this->publishingYear = publishingYear;
+    }
+
+    Book(const Book &book)
+    {
+        int n = strlen(book.getTitle());
+        int m = strlen(book.getAuthors());
+        this->title = new char[n];
+        this->authors = new char[m];
+        for(int i = 0; i < n; i++) title[i] = book.getTitle()[i];
+        for(int j = 0; j < m; j++) authors[j] = book.getAuthors()[j];
+        this->publishingYear = book.getPublishingYear();
+    }
+    
+    void setTitle(const char* title)
+    {
+        int n = strlen(title);
+        this->title = new char[n];
+        for(int i = 0; i < n; i++) this->title[i] = title[i];
+    }
+
+    void setAuthors(const char* authors)
+    {
+        int m = strlen(authors);
+        this->authors = new char[m];
+        for(int j = 0; j < m; j++) this->authors[j] = authors[j];
+    }
+
+    void setPublishingYear(int publishingYear)
+    {
+        this->publishingYear = publishingYear;
+    }
+
+    char* getTitle() const
+    {
+        return this->title;
+    }
+
+    char* getAuthors() const
+    {
+        return this->authors;
+    }
+
+    int getPublishingYear() const
+    {
+        return this->publishingYear;
+    }
+
+    ~Book()
+    {
+        delete[] title;
+        delete[] authors;
+    }
+
+    void printBook(){
+        printf("%s\n%s\n%d", this->title, this->authors, this->publishingYear);
+    }
+};
