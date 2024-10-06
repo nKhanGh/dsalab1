@@ -1,0 +1,56 @@
+void LinkedList::partition(int k) {
+    if (head == NULL) return;
+
+    Node* lhead = NULL;
+    Node* ltail = NULL;
+    Node* ehead = NULL;
+    Node* etail = NULL;
+    Node* hhead = NULL;
+    Node* htail = NULL;
+    Node* a = head;
+
+    while (a != NULL) {
+        Node* b = a->next;
+        if (a->value == k) {
+            if (ehead == NULL) {
+                ehead = a;
+                etail = a;
+            } else {
+                etail->next = a;
+                etail = a;
+            }
+        } else if (a->value < k) {
+            if (lhead == NULL) {
+                lhead = a;
+                ltail = a;
+            } else {
+                ltail->next = a;
+                ltail = a;
+            }
+        } else {
+            if (hhead == NULL) {
+                hhead = a;
+                htail = a;
+            } else {
+                htail->next = a;
+                htail = a;
+            }
+        }
+        a = b;
+    }
+
+    if (lhead != NULL) {
+        head = lhead;
+        if(ehead != NULL) {
+            ltail->next = ehead;
+            etail->next = hhead;
+        }else{
+            ltail->next = hhead;
+        }
+    }else if(ehead != NULL) {
+        head = ehead;
+        etail->next = hhead;
+    } else head = hhead;
+    tail = (hhead != NULL) ? htail : (ehead != NULL) ? etail : ltail;
+    if (tail != NULL) tail->next = NULL;
+}
