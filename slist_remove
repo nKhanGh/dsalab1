@@ -1,0 +1,66 @@
+template <class T>
+T SLinkedList<T>::removeAt(int index)
+{
+    if(index < 0 || index >= count){
+        throw std::out_of_range("");
+    }
+    T c;
+    Node* a = head;
+    if(index == 0){
+        if(tail == head) tail = NULL;
+        c = head->data;
+        head = head->next;
+        delete a;
+    }
+    else{
+        Node* b = NULL;
+        for(int i = 0; i < index; i++){
+            b = a;
+            a = a->next;
+        } 
+        c = a->data;
+        b->next = a->next;
+        if(tail == a) tail = b;
+        delete a;
+    }
+    count--;
+    return c;
+}
+
+template <class T>
+bool SLinkedList<T>::removeItem(const T& item)
+{
+    Node* a = head;
+    if(head->data == item){
+        if(tail == head) tail = NULL;
+        head = head->next;
+        delete a;
+        count--;
+        return true;
+    }
+    Node* b = NULL;
+    while(a != NULL){
+        if(a->data == item){
+            b->next = a->next;
+            if(tail == a) tail = b;
+            delete a;
+            count--;
+            return true;
+        }
+        b = a;
+        a = a->next;
+    }
+    return false;
+}
+
+template<class T>
+void SLinkedList<T>::clear(){
+    while(head != NULL){
+        Node* a = head;
+        head = head->next;
+        delete a;
+    }
+    head = NULL;
+    tail = NULL;
+    count = 0;
+}
