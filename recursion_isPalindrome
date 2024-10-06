@@ -1,0 +1,8 @@
+bool isPalindrome(string str) 
+{ 
+    if(str.size() == 0 || str.size() == 1) return true;
+    if(str[0] == ' ') return isPalindrome(str.substr(1, str.size() - 1));
+    else if(str[str.size() - 1] == ' ') return isPalindrome(str.substr(0, str.size() - 1));
+    else if(str[0] == str[str.size() - 1]) return isPalindrome(str.substr(1, str.size() - 2));
+    return false;
+}
